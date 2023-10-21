@@ -1,0 +1,10 @@
+{
+  "name": "blog-v1-api",
+  "version": "1.0.0",
+  "description": "REST API para blog",
+  "main": "./src/index.ts",
+  "repository": "https://github.com/lucas-010/blog-v1-api.git",
+  "author": "Lucas Pereira Ramos <lucaspereiradf07@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
