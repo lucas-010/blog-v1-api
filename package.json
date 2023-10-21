@@ -1,17 +1,19 @@
 {
-  "name": "blog-v1-api",
-  "version": "1.0.0",
-  "description": "REST API para blog",
-  "main": "./src/index.ts",
-  "repository": "https://github.com/lucas-010/blog-v1-api.git",
-  "author": "Lucas Pereira Ramos <lucaspereiradf07@gmail.com>",
-  "license": "MIT",
-  "private": false,
-  "devDependencies": {
-    "@types/node": "^20.8.7",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
-    "eslint": "^8.52.0",
-    "typescript": "^5.2.2"
-  }
+	"name": "blog-v1-api",
+	"version": "1.0.0",
+	"description": "REST API para blog",
+	"main": "./src/index.ts",
+	"repository": "https://github.com/lucas-010/blog-v1-api.git",
+	"author": "Lucas Pereira Ramos <lucaspereiradf07@gmail.com>",
+	"license": "MIT",
+	"private": false,
+	"devDependencies": {
+		"@types/node": "^20.8.7",
+		"@typescript-eslint/eslint-plugin": "^6.8.0",
+		"@typescript-eslint/parser": "^6.8.0",
+		"eslint": "^8.52.0",
+		"eslint-config-prettier": "^9.0.0",
+		"prettier": "^3.0.3",
+		"typescript": "^5.2.2"
+	}
 }
