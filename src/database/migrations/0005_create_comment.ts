@@ -7,6 +7,8 @@ export const up = async (knex: Knex): Promise<void> => {
 			table.text("text").notNullable();
 			table.string("articleId").unsigned();
 			table.foreign("articleId").references("article.id");
+			table.string("userId").unsigned();
+			table.foreign("userId").references("user.id");
 		})
 		.then(() => {
 			console.log("# Created table comment");
