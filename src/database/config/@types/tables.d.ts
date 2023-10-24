@@ -1,8 +1,8 @@
-import { Article } from "../../../models/Article";
-import { ArticleTag } from "../../../models/ArticleTag";
-import { Comment } from "../../../models/Comment";
-import { Tag } from "../../../models/Tag";
-import { User } from "../../../models/User";
+import { Article } from "../../../entities/Article";
+import { ArticleTag } from "../../../entities/ArticleTag";
+import { Comment } from "../../../entities/Comment";
+import { Tag } from "../../../entities/Tag";
+import { User } from "../../../entities/User";
 
 declare module "knex/types/tables" {
 	interface Tables {
