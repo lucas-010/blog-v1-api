@@ -2,7 +2,7 @@ import { Knex } from "knex";
 import path from "path";
 
 export const production: Knex.Config = {
-	client: "mysql2",
+	client: "pg",
 	connection: {
 		host: process.env.DATABASE_HOST,
 		user: process.env.DATABASE_USER,
