@@ -7,6 +7,9 @@
   "author": "Lucas Pereira Ramos <lucaspereiradf07@gmail.com>",
   "license": "MIT",
   "private": false,
+	"engines": {
+		"node": "18.18.0"
+	},
   "scripts": {
     "prepare": "husky install",
     "test": "jest"
