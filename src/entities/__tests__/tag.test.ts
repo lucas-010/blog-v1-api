@@ -8,7 +8,7 @@ describe("Tag - Entity", () => {
 		tag = new Tag({ name: "Tag test" });
 	});
 
-	it("should create an instance of Tag", () => {
+	it("should be an instance of Tag", () => {
 		expect(tag).toBeInstanceOf(Tag);
 	});
 
