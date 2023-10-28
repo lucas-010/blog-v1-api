@@ -1,31 +1,31 @@
-import { v4 as uuid } from "uuid";
+import { EntityBase } from "./EntityBase";
+import { userSchema } from "../schemas/userSchema";
 
-export class User {
-	private readonly id: string;
-	private name: string;
-	private email: string;
-	private password: string;
+export interface UserProps {
+	id?: string;
+	name: string;
+	email: string;
+	password: string;
+}
 
-	constructor(name: string, email: string, password: string) {
-		this.id = uuid();
-		this.name = name;
-		this.email = email;
-		this.password = password;
+export class User extends EntityBase<UserProps> {
+	private props: UserProps;
+
+	constructor(props: UserProps) {
+		super();
+		this.props = { ...props, id: super.id };
+		super.validate(userSchema, this.props);
 	}
 
-	getId() {
-		return this.id;
+	get name() {
+		return this.props.name;
 	}
 
-	getName() {
-		return this.name;
+	get email() {
+		return this.props.email;
 	}
 
-	getEmail() {
-		return this.email;
-	}
-
-	getPassword() {
-		return this.password;
+	get password() {
+		return this.props.password;
 	}
 }
