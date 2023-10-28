@@ -21,8 +21,22 @@ describe("Tag - Entity", () => {
 	});
 
 	it("should return an error when passing an empty name", () => {
-		expect(() => new Tag({ name: "" })).toThrow(
-			"Erros de validação: Deve ter no mínimo 2 caracteres",
-		);
+		try {
+			new Tag({ name: "" });
+		} catch (error) {
+			const formatError = JSON.parse((error as Error).message);
+			expect(error).toBeInstanceOf(Error);
+			expect(formatError[0].path[0]).toEqual("name");
+		}
+	});
+
+	it("should return an error when passing an name with 1 character", () => {
+		try {
+			new Tag({ name: "T" });
+		} catch (error) {
+			const formatError = JSON.parse((error as Error).message);
+			expect(error).toBeInstanceOf(Error);
+			expect(formatError[0].path[0]).toEqual("name");
+		}
 	});
 });
