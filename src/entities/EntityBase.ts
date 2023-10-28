@@ -12,11 +12,10 @@ export abstract class EntityBase<T> {
 		return this._id;
 	}
 
-	validate(schema: ZodType<T>, data: T) {
+	protected validate(schema: ZodType<T>, data: T) {
 		const result = schema.safeParse(data);
 		if (!result.success) {
-			const errorMessages = result.error.errors.map((error) => error.message);
-			throw new Error(`Erros de validação: ${errorMessages.join(", ")}`);
+			throw new Error(JSON.stringify(result.error.errors));
 		}
 		return true;
 	}
