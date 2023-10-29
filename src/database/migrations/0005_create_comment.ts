@@ -5,6 +5,7 @@ export const up = async (knex: Knex): Promise<void> => {
 		.createTable("comment", (table) => {
 			table.string("id").primary().index();
 			table.text("text").notNullable();
+			table.date("published").notNullable().defaultTo(knex.raw("CURRENT_DATE"));
 			table.string("articleId").unsigned();
 			table.foreign("articleId").references("article.id");
 			table.string("userId").unsigned();
