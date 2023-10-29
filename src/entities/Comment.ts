@@ -1,31 +1,32 @@
-import { v4 as uuid } from "uuid";
+import { EntityBase } from "./EntityBase";
+import { commentSchema } from "../schemas/commentSchema";
 
-export class Comment {
-	private readonly id: string;
-	private text: string;
-	private userId: string;
-	private articleId: string;
+export interface CommentProps {
+	id?: string;
+	text: string;
+	published?: Date;
+	userId: string;
+	articleId: string;
+}
 
-	constructor(text: string, userId: string, articleId: string) {
-		this.id = uuid();
-		this.text = text;
-		this.userId = userId;
-		this.articleId = articleId;
+export class Comment extends EntityBase<CommentProps> {
+	private props: CommentProps;
+
+	constructor(props: CommentProps) {
+		super();
+		this.props = { ...props, id: super.id, published: new Date() };
+		super.validate(commentSchema, this.props);
 	}
 
-	getId() {
-		return this.id;
+	get text() {
+		return this.props.text;
 	}
 
-	getText() {
-		return this.text;
+	get userId() {
+		return this.props.userId;
 	}
 
-	getUserId() {
-		return this.userId;
-	}
-
-	getArticleId() {
-		return this.articleId;
+	get articleId() {
+		return this.props.articleId;
 	}
 }
