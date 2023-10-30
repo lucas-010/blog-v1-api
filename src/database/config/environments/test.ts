@@ -7,6 +7,7 @@ export const test: Knex.Config = {
 	migrations: {
 		directory: path.resolve(__dirname, "..", "..", "migrations"),
 	},
+	useNullAsDefault: false,
 	seeds: {
 		directory: path.resolve(__dirname, "..", "..", "seeds"),
 	},
