@@ -1,15 +1,15 @@
-import { Article } from "../../../entities/Article";
-import { ArticleTag } from "../../../entities/ArticleTag";
-import { Comment } from "../../../entities/Comment";
-import { Tag } from "../../../entities/Tag";
-import { User } from "../../../entities/User";
+import { ArticleProps } from "../../../entities/Article";
+import { ArticleTagProps } from "../../../entities/ArticleTag";
+import { CommentProps } from "../../../entities/Comment";
+import { TagProps } from "../../../entities/Tag";
+import { UserProps } from "../../../entities/User";
 
 declare module "knex/types/tables" {
 	interface Tables {
-		user: User;
-		article: Article;
-		tag: Tag;
-		articleTag: ArticleTag;
-		comment: Comment;
+		user: UserProps;
+		article: ArticleProps;
+		tag: TagProps;
+		articleTag: ArticleTagProps;
+		comment: CommentProps;
 	}
 }
