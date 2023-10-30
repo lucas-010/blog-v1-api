@@ -19,7 +19,7 @@ export const development: Knex.Config = {
 	seeds: {
 		directory: path.resolve(__dirname, "..", "..", "seeds"),
 	},
-	useNullAsDefault: true,
+	useNullAsDefault: false,
 	pool: {
 		afterCreate: (
 			conn: { run: (arg0: string, arg1: unknown) => void },
