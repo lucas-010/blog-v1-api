@@ -1,37 +1,36 @@
-import { v4 as uuid } from "uuid";
+import { EntityBase } from "./EntityBase";
+import { articleSchema } from "../schemas/articleSchema";
 
-export class Article {
-	private readonly id: string;
-	private title: string;
-	private body: string;
-	private published: Date;
-	private userId: string;
+export interface ArticleProps {
+	id?: string;
+	title: string;
+	body: string;
+	published?: Date;
+	userId: string;
+}
 
-	constructor(title: string, body: string, userId: string) {
-		this.id = uuid();
-		this.title = title;
-		this.body = body;
-		this.published = new Date();
-		this.userId = userId;
+export class Article extends EntityBase<ArticleProps> {
+	private props: ArticleProps;
+
+	constructor(props: ArticleProps) {
+		super();
+		this.props = { ...props, id: super.id, published: new Date() };
+		super.validate(articleSchema, this.props);
 	}
 
-	getId() {
-		return this.id;
+	get title() {
+		return this.props.title;
 	}
 
-	getTitle() {
-		return this.title;
+	get body() {
+		return this.props.body;
 	}
 
-	getBody() {
-		return this.body;
+	get published() {
+		return this.props.published;
 	}
 
-	getPublished() {
-		return this.published;
-	}
-
-	getUserId() {
-		return this.userId;
+	get userId() {
+		return this.props.userId;
 	}
 }
