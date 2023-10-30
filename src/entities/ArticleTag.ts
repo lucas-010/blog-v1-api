@@ -1,25 +1,26 @@
-import { v4 as uuid } from "uuid";
+import { articleTagSchema } from "../schemas/articleTagSchema";
+import { EntityBase } from "./EntityBase";
 
-export class ArticleTag {
-	private readonly id: string;
-	private tagId: string;
-	private articleId: string;
+export interface ArticleTagProps {
+	id?: string;
+	tagId: string;
+	articleId: string;
+}
 
-	constructor(tagId: string, articleId: string) {
-		this.id = uuid();
-		this.tagId = tagId;
-		this.articleId = articleId;
+export class ArticleTag extends EntityBase<ArticleTagProps> {
+	private props: ArticleTagProps;
+
+	constructor(props: ArticleTagProps) {
+		super();
+		this.props = { ...props, id: super.id };
+		super.validate(articleTagSchema, this.props);
 	}
 
-	getId() {
-		return this.id;
+	get tagId() {
+		return this.props.tagId;
 	}
 
-	getTagId() {
-		return this.tagId;
-	}
-
-	getArticleId() {
-		return this.articleId;
+	get articleId() {
+		return this.props.articleId;
 	}
 }
