@@ -1,5 +1,6 @@
-import { EntityBase } from "./EntityBase";
 import { userSchema } from "../schemas/userSchema";
+import { v4 as uuid } from "uuid";
+import { validate } from "../utils/validateSchema";
 
 export interface UserProps {
 	id?: string;
@@ -8,13 +9,16 @@ export interface UserProps {
 	password: string;
 }
 
-export class User extends EntityBase<UserProps> {
+export class User {
 	private props: UserProps;
 
 	constructor(props: UserProps) {
-		super();
-		this.props = { ...props, id: super.id };
-		super.validate(userSchema, this.props);
+		this.props = { ...props, id: uuid() };
+		validate(userSchema, this.props);
+	}
+
+	get id() {
+		return String(this.props.id);
 	}
 
 	get name() {
