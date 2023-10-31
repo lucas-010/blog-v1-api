@@ -1,18 +1,22 @@
 import { tagSchema } from "../schemas/tagSchema";
-import { EntityBase } from "./EntityBase";
+import { v4 as uuid } from "uuid";
+import { validate } from "../utils/validateSchema";
 
 export interface TagProps {
 	id?: string;
 	name: string;
 }
 
-export class Tag extends EntityBase<TagProps> {
+export class Tag {
 	private props: TagProps;
 
 	constructor(props: TagProps) {
-		super();
-		this.props = { ...props, id: super.id };
-		super.validate(tagSchema, this.props);
+		this.props = { ...props, id: uuid() };
+		validate(tagSchema, this.props);
+	}
+
+	get id() {
+		return String(this.props.id);
 	}
 
 	get name() {
