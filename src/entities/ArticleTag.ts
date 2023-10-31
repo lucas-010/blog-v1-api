@@ -1,5 +1,6 @@
 import { articleTagSchema } from "../schemas/articleTagSchema";
-import { EntityBase } from "./EntityBase";
+import { v4 as uuid } from "uuid";
+import { validate } from "../utils/validateSchema";
 
 export interface ArticleTagProps {
 	id?: string;
@@ -7,13 +8,16 @@ export interface ArticleTagProps {
 	articleId: string;
 }
 
-export class ArticleTag extends EntityBase<ArticleTagProps> {
+export class ArticleTag {
 	private props: ArticleTagProps;
 
 	constructor(props: ArticleTagProps) {
-		super();
-		this.props = { ...props, id: super.id };
-		super.validate(articleTagSchema, this.props);
+		this.props = { ...props, id: uuid() };
+		validate(articleTagSchema, this.props);
+	}
+
+	get id() {
+		return String(this.props.id);
 	}
 
 	get tagId() {
