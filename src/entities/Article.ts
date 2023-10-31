@@ -1,5 +1,6 @@
-import { EntityBase } from "./EntityBase";
 import { articleSchema } from "../schemas/articleSchema";
+import { v4 as uuid } from "uuid";
+import { validate } from "../utils/validateSchema";
 
 export interface ArticleProps {
 	id?: string;
@@ -9,13 +10,16 @@ export interface ArticleProps {
 	userId: string;
 }
 
-export class Article extends EntityBase<ArticleProps> {
+export class Article {
 	private props: ArticleProps;
 
 	constructor(props: ArticleProps) {
-		super();
-		this.props = { ...props, id: super.id, published: new Date() };
-		super.validate(articleSchema, this.props);
+		this.props = { ...props, id: uuid(), published: new Date() };
+		validate(articleSchema, this.props);
+	}
+
+	get id() {
+		return String(this.props.id);
 	}
 
 	get title() {
