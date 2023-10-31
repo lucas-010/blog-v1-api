@@ -1,5 +1,6 @@
-import { EntityBase } from "./EntityBase";
 import { commentSchema } from "../schemas/commentSchema";
+import { v4 as uuid } from "uuid";
+import { validate } from "../utils/validateSchema";
 
 export interface CommentProps {
 	id?: string;
@@ -9,13 +10,16 @@ export interface CommentProps {
 	articleId: string;
 }
 
-export class Comment extends EntityBase<CommentProps> {
+export class Comment {
 	private props: CommentProps;
 
 	constructor(props: CommentProps) {
-		super();
-		this.props = { ...props, id: super.id, published: new Date() };
-		super.validate(commentSchema, this.props);
+		this.props = { ...props, id: uuid(), published: new Date() };
+		validate(commentSchema, this.props);
+	}
+
+	get id() {
+		return String(this.props.id);
 	}
 
 	get text() {
