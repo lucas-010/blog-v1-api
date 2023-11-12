@@ -5,7 +5,7 @@ describe("Tag - Entity", () => {
 	let tag: Tag;
 
 	beforeEach(() => {
-		tag = new Tag({ name: "Tag test" });
+		tag = new Tag("Tag test");
 	});
 
 	it("should be an instance of Tag", () => {
@@ -22,7 +22,7 @@ describe("Tag - Entity", () => {
 
 	it("should return an error when passing an empty name", () => {
 		try {
-			new Tag({ name: "" });
+			new Tag("");
 		} catch (error) {
 			const formatError = JSON.parse((error as Error).message);
 			expect(error).toBeInstanceOf(Error);
@@ -32,11 +32,21 @@ describe("Tag - Entity", () => {
 
 	it("should return an error when passing an name with 1 character", () => {
 		try {
-			new Tag({ name: "T" });
+			new Tag("T");
 		} catch (error) {
 			const formatError = JSON.parse((error as Error).message);
 			expect(error).toBeInstanceOf(Error);
 			expect(formatError[0].path[0]).toEqual("name");
+		}
+	});
+
+	it("should return an error when passing an id as UUID invalid", () => {
+		try {
+			new Tag("Tag", "invalid id");
+		} catch (error) {
+			const formatError = JSON.parse((error as Error).message);
+			expect(error).toBeInstanceOf(Error);
+			expect(formatError[0].path[0]).toEqual("id");
 		}
 	});
 });
