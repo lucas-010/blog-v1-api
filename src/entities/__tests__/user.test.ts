@@ -82,4 +82,14 @@ describe("User - Entity", () => {
 			expect(formatError[0].path[0]).toEqual("name");
 		}
 	});
+
+	it("should return an error when passing an id as UUID invalid", () => {
+		try {
+			new User({ ...userValidData, id: "invalid id" });
+		} catch (error) {
+			const formatError = JSON.parse((error as Error).message);
+			expect(error).toBeInstanceOf(Error);
+			expect(formatError[0].path[0]).toEqual("id");
+		}
+	});
 });
