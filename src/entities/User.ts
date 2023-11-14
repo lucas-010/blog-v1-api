@@ -13,7 +13,7 @@ export class User {
 	private props: UserProps;
 
 	constructor(props: UserProps) {
-		this.props = { ...props, id: uuid() };
+		this.props = { ...props, id: props.id || uuid() };
 		validate(userSchema, this.props);
 	}
 
