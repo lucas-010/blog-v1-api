@@ -14,7 +14,7 @@ export class Article {
 	private props: ArticleProps;
 
 	constructor(props: ArticleProps) {
-		this.props = { ...props, id: uuid(), published: new Date() };
+		this.props = { ...props, id: props.id || uuid(), published: new Date() };
 		validate(articleSchema, this.props);
 	}
 
