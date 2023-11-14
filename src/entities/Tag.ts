@@ -10,8 +10,8 @@ export interface TagProps {
 export class Tag {
 	private props: TagProps;
 
-	constructor(name: string, id?: string) {
-		this.props = { name: name, id: id || uuid() };
+	constructor(props: TagProps) {
+		this.props = { ...props, id: props.id || uuid() };
 		validate(tagSchema, this.props);
 	}
 
