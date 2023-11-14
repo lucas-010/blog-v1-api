@@ -12,7 +12,7 @@ export class ArticleTag {
 	private props: ArticleTagProps;
 
 	constructor(props: ArticleTagProps) {
-		this.props = { ...props, id: uuid() };
+		this.props = { ...props, id: props.id || uuid() };
 		validate(articleTagSchema, this.props);
 	}
 
