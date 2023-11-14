@@ -14,7 +14,7 @@ export class Comment {
 	private props: CommentProps;
 
 	constructor(props: CommentProps) {
-		this.props = { ...props, id: uuid(), published: new Date() };
+		this.props = { ...props, id: props.id || uuid(), published: new Date() };
 		validate(commentSchema, this.props);
 	}
 
