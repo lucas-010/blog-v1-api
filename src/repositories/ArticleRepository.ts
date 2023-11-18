@@ -16,4 +16,19 @@ export class ArticleRepository extends RepositoryBase<Article> {
 			(await this.database(this.tableName).where("id", id).update(item)) > 0
 		);
 	}
+
+	async selectByTitle(
+		title: string,
+		page: number,
+		limit: number,
+	): Promise<Article[]> {
+		const offset = (page - 1) & limit;
+		const lowercaseTitle = title.toLowerCase();
+
+		return await this.database(this.tableName)
+			.whereRaw("LOWER(title) LIKE ?", [`%${lowercaseTitle}%`])
+			.select()
+			.offset(offset)
+			.limit(limit);
+	}
 }
