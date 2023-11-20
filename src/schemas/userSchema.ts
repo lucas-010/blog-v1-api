@@ -11,3 +11,15 @@ export const userSchema = z.object({
 		.string()
 		.min(8, { message: "A senha deve ter no mínimo 8 caracteres" }),
 });
+
+export const userSchemaOptional = z.object({
+	name: z
+		.string()
+		.min(1, { message: "Deve ter no mínimo 1 caractere" })
+		.max(100, { message: "Deve ter no máximo 100 caracteres" })
+		.optional(),
+	password: z
+		.string()
+		.min(8, { message: "A senha deve ter no mínimo 8 caracteres" })
+		.optional(),
+});
