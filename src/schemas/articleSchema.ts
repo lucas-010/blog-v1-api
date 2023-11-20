@@ -7,3 +7,14 @@ export const articleSchema = z.object({
 	published: z.date(),
 	userId: z.string().uuid({ message: "Deve ser um ID único universal" }),
 });
+
+export const articleSchemaOptional = z.object({
+	title: z
+		.string()
+		.min(2, { message: "Deve ter no mínimo 2 caracteres" })
+		.optional(),
+	body: z
+		.string()
+		.min(1, { message: "Deve ter no mínimo 1 caractere" })
+		.optional(),
+});
