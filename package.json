@@ -12,7 +12,9 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+		"dev": "tsx ./src/index.ts",
+		"build": "tsup src"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
